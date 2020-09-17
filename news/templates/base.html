@@ -1,0 +1,106 @@
+{% load static %} 
+{% load news_tags %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %} My Blog {% endblock %}</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            header {
+                display: flex;
+                justify-content: space-between;
+                background-color: #2F4F4F;
+                margin: 0;
+                padding: 4px;
+                top: 0;
+                align-items: center;
+                color:#FFFAF0;
+                
+               
+            }
+            header a {
+                text-decoration: none;
+                color:#FFFAF0;
+            }
+            .logo {
+                font-size: 2.2rem;
+            }
+
+            .right {
+                margin: 1rem;
+            }
+            .right span {
+                margin-left: 1rem;
+            }
+
+            .body {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+
+            }
+            .main {
+                width: 1000px;
+            }
+            .sidebar {
+                width: 250px;
+            }
+            input {
+                width: 25rem;
+            }
+            a {
+                text-decoration: none;
+            }
+            img {
+                width: 350px;
+                object-fit: contain;
+            }
+            .detail_form input {
+                width: 70%;
+                border: none;
+            }
+            .detail_form {
+                width: 60%;
+                border: 1px solid grey;
+                padding: 5px;
+                border-radius: 5px;
+                background-color: #DDDDDD;
+            }
+           
+        </style>
+    </head>
+    <body>
+        <header>
+            <span class="logo"><a href="{% url 'news:post_list' %}">My&nbsp;Blog</a></span>
+            <span class="search"><form method="GET"><input type="text" name="query" placeholder="search for anything here">
+                <button><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                <path fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+            </svg></button></form></span>
+            <div class="right">
+                <span><a href="">Contact</a></span>
+                <span><a href="">About</a></span>
+            </div>
+        </header>
+        <div class="body">
+            <div class="sidebar">
+                <h2>Latest Posts</h2>
+                {% show_latest_posts %}
+                
+            </div>
+            <div class="main">
+                {% block content %}
+                {% endblock %}
+                
+            </div>
+        </div>
+        
+       
+    </body>
+</html>

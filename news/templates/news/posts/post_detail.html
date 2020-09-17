@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load news_tags %}
+{% block title %} {{post.title}} {% endblock %}
+{% block content %}
+    <h1>{{post.title}}</h1>
+    <small>Published {{post.publish}} by {{post.author}}</small>
+    <p>{{post.body|markdown}}</p>
+    <h3>Comments</h3>
+    {% for comment in comments %}
+        <div class="comment">
+            <small>Created {{comment.created}} by {{comment.name}} </small>
+            {{comment.body|linebreaks}}
+        </div>
+    {% empty %}
+        No comments 😝 
+    {% endfor %}  
+    {% if new_comment %}
+        Comment Submitted
+    {% else %}
+        <h3>Oya add your comment na 😇</h3>
+        <form method="post" class="detail_form">
+            {{comment_form.as_p}}
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+{% endblock %}

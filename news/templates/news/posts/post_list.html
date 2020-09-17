@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+{% load news_tags %}
+{% block content %}
+    {% for post in posts %}
+        <a href="{{post.get_absolute_url}}">
+            <h2>{{post.title}}</h2><small>Published {{post.publish}} by {{post.author}}</small>
+            <small>Published {{post.publish}} by {{post.author}}</small>
+            <p>{{post.body|markdown|truncatewords_html:30}}</p>
+        </a>
+    {% empty %}
+    No post 😝 
+    {% endfor %}
+
+
+{% endblock %}
+        
+
